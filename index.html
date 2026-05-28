@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>National School Games – Certificate of Eligibility | ZPEO KANGAN</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:    #0A1628;
+  --navy2:   #112240;
+  --saffron: #FF6B00;
+  --gold:    #F5A623;
+  --green:   #138808;
+  --green2:  #0D6B06;
+  --white:   #FFFFFF;
+  --light:   #F0F4FF;
+  --muted:   #8892A4;
+  --border:  rgba(255,255,255,0.12);
+  --glass:   rgba(255,255,255,0.07);
+  --card:    rgba(17,34,64,0.95);
+  --step-done: var(--green);
+  --step-active: var(--saffron);
+  --step-idle: rgba(255,255,255,0.2);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--navy);
+  color: var(--white);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── BACKGROUND ─── */
+.bg-canvas {
+  position: fixed; inset: 0; z-index: 0; overflow: hidden;
+}
+.bg-canvas::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 10%, rgba(255,107,0,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 90% 80%, rgba(19,136,8,0.16) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(10,22,40,0.9) 0%, transparent 100%);
+}
+.bg-rings {
+  position: absolute; bottom: -120px; right: -120px; opacity: 0.06;
+}
+.bg-rings circle { fill: none; stroke: var(--white); stroke-width: 2; }
+
+/* ─── HEADER ─── */
+header {
+  position: relative; z-index: 10;
+  background: linear-gradient(135deg, var(--navy2) 0%, #0D1F3C 100%);
+  border-bottom: 2px solid var(--saffron);
+  padding: 0;
+  overflow: hidden;
+}
+.header-stripe {
+  height: 5px;
+  background: linear-gradient(90deg, var(--saffron) 33%, var(--white) 33% 66%, var(--green) 66%);
+}
+.header-inner {
+  max-width: 1100px; margin: 0 auto;
+  padding: 20px 24px 24px;
+  display: flex; align-items: center; gap: 20px;
+}
+.header-emblem {
+  width: 70px; height: 70px; flex-shrink: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--saffron), var(--gold));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32px;
+  box-shadow: 0 0 0 3px rgba(255,107,0,0.3), 0 8px 32px rgba(255,107,0,0.25);
+  animation: pulse-emblem 3s ease-in-out infinite;
+}
+@keyframes pulse-emblem {
+  0%,100% { box-shadow: 0 0 0 3px rgba(255,107,0,0.3), 0 8px 32px rgba(255,107,0,0.25); }
+  50%      { box-shadow: 0 0 0 6px rgba(255,107,0,0.15), 0 8px 32px rgba(255,107,0,0.4); }
+}
+.header-text { flex: 1; }
+.header-text .org {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11px; font-weight: 600; letter-spacing: 3px;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 4px;
+}
+.header-text h1 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(20px, 4vw, 32px); font-weight: 700;
+  line-height: 1.1; color: var(--white);
+}
+.header-text h1 span { color: var(--saffron); }
+.header-text .sub {
+  font-size: 12px; color: var(--muted); margin-top: 5px; font-weight: 500;
+}
+.header-badge {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 16px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  display: none;
+}
+@media(min-width:600px){ .header-badge { display: block; } }
+.header-badge .b-label { font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+.header-badge .b-val  { font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700; color: var(--gold); }
+
+/* ─── MAIN LAYOUT ─── */
+.page-wrap {
+  position: relative; z-index: 5;
+  max-width: 1100px; margin: 0 auto;
+  padding: 28px 16px 60px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+@media(min-width:900px){
+  .page-wrap { grid-template-columns: 420px 1fr; align-items: start; }
+}
+
+/* ─── STEP PROGRESS ─── */
+.progress-bar-wrap {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 20px 24px 16px;
+  backdrop-filter: blur(20px);
+  margin-bottom: 4px;
+}
+.progress-header {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;
+}
+.progress-header h3 {
+  font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 700;
+  color: var(--gold); letter-spacing: 1px; text-transform: uppercase;
+}
+.progress-pct { font-size: 13px; color: var(--saffron); font-weight: 700; }
+.progress-track {
+  height: 6px; background: rgba(255,255,255,0.1);
+  border-radius: 3px; overflow: hidden; margin-bottom: 16px;
+}
+.progress-fill {
+  height: 100%; border-radius: 3px;
+  background: linear-gradient(90deg, var(--saffron), var(--gold));
+  transition: width 0.5s cubic-bezier(.4,0,.2,1);
+  width: 20%;
+}
+.steps-nav {
+  display: flex; flex-direction: column; gap: 6px;
+}
+.step-btn {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 14px; border-radius: 10px;
+  background: transparent; border: 1px solid transparent;
+  cursor: pointer; transition: all 0.25s; text-align: left;
+  width: 100%;
+}
+.step-btn:hover { background: var(--glass); border-color: var(--border); }
+.step-btn.active {
+  background: rgba(255,107,0,0.12);
+  border-color: rgba(255,107,0,0.4);
+}
+.step-btn.done {
+  background: rgba(19,136,8,0.1);
+  border-color: rgba(19,136,8,0.3);
+}
+.step-dot {
+  width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700;
+  background: var(--step-idle); border: 2px solid rgba(255,255,255,0.15);
+  color: var(--muted); transition: all 0.3s;
+}
+.step-btn.active .step-dot {
+  background: var(--saffron); border-color: var(--saffron);
+  color: white; box-shadow: 0 0 0 4px rgba(255,107,0,0.2);
+}
+.step-btn.done .step-dot {
+  background: var(--green); border-color: var(--green); color: white;
+}
+.step-info .s-title {
+  font-size: 13px; font-weight: 700; color: var(--white);
+}
+.step-info .s-sub {
+  font-size: 11px; color: var(--muted); margin-top: 1px;
+}
+.step-btn.active .step-info .s-title { color: var(--saffron); }
+.step-btn.done  .step-info .s-title { color: var(--green); }
+
+/* ─── FORM CARD ─── */
+.form-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 28px 24px;
+  backdrop-filter: blur(20px);
+}
+.step-panel { display: none; animation: fadeIn 0.35s ease; }
+.step-panel.active { display: block; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+
+.panel-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 22px; font-weight: 700; color: var(--white);
+  margin-bottom: 4px; display: flex; align-items: center; gap: 10px;
+}
+.panel-title span { font-size: 22px; }
+.panel-sub { font-size: 13px; color: var(--muted); margin-bottom: 22px; }
+.divider {
+  height: 1px; background: var(--border); margin: 16px 0;
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.field-grid .full { grid-column: 1 / -1; }
+
+.field { display: flex; flex-direction: column; gap: 5px; }
+.field label {
+  font-size: 11px; font-weight: 700; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--muted);
+}
+.field input, .field select, .field textarea {
+  background: rgba(255,255,255,0.06);
+  border: 1.5px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: var(--white);
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px; font-weight: 600;
+  transition: all 0.2s;
+  outline: none;
+  width: 100%;
+}
+.field input::placeholder { color: var(--muted); font-weight: 400; }
+.field input:focus, .field select:focus {
+  border-color: var(--saffron);
+  background: rgba(255,107,0,0.06);
+  box-shadow: 0 0 0 3px rgba(255,107,0,0.12);
+}
+.field input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) opacity(0.5);
+}
+.field select option { background: var(--navy2); color: var(--white); }
+
+/* photo upload */
+.photo-upload-area {
+  border: 2px dashed rgba(255,255,255,0.2);
+  border-radius: 14px; padding: 24px;
+  text-align: center; cursor: pointer;
+  transition: all 0.25s; background: var(--glass);
+}
+.photo-upload-area:hover {
+  border-color: var(--saffron); background: rgba(255,107,0,0.06);
+}
+.photo-upload-area .icon { font-size: 36px; margin-bottom: 8px; }
+.photo-upload-area p { font-size: 13px; color: var(--muted); }
+.photo-upload-area strong { color: var(--saffron); }
+#photoPreviewThumb {
+  width: 100px; height: 120px; object-fit: cover;
+  border-radius: 10px; border: 2px solid var(--gold);
+  display: none; margin: 10px auto 0;
+}
+#inputPhoto { display: none; }
+
+/* ─── NAV BUTTONS ─── */
+.btn-row {
+  display: flex; gap: 12px; margin-top: 24px; justify-content: flex-end;
+}
+.btn {
+  padding: 11px 24px; border: none; border-radius: 10px;
+  font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 700;
+  cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 8px;
+}
+.btn-prev {
+  background: rgba(255,255,255,0.08); color: var(--muted); border: 1.5px solid var(--border);
+}
+.btn-prev:hover { background: rgba(255,255,255,0.14); color: var(--white); }
+.btn-next {
+  background: linear-gradient(135deg, var(--saffron), var(--gold));
+  color: white; box-shadow: 0 4px 20px rgba(255,107,0,0.3);
+}
+.btn-next:hover { transform: translateY(-1px); box-shadow: 0 6px 25px rgba(255,107,0,0.4); }
+.btn-generate {
+  background: linear-gradient(135deg, var(--green), var(--green2));
+  color: white; box-shadow: 0 4px 20px rgba(19,136,8,0.3);
+}
+.btn-generate:hover { transform: translateY(-1px); box-shadow: 0 6px 25px rgba(19,136,8,0.4); }
+.btn-pdf {
+  background: linear-gradient(135deg, #1565C0, #0D47A1);
+  color: white; box-shadow: 0 4px 20px rgba(21,101,192,0.3);
+}
+.btn-pdf:hover { transform: translateY(-1px); box-shadow: 0 6px 25px rgba(21,101,192,0.4); }
+.btn-import {
+  background: rgba(255,255,255,0.08); color: var(--gold);
+  border: 1.5px solid rgba(245,166,35,0.3); font-size: 12px; padding: 8px 16px;
+}
+.btn-import:hover { background: rgba(245,166,35,0.1); }
+
+/* ─── RIGHT PANEL ─── */
+.right-panel { display: flex; flex-direction: column; gap: 16px; }
+
+/* import card */
+.import-card {
+  background: rgba(245,166,35,0.08);
+  border: 1px solid rgba(245,166,35,0.25);
+  border-radius: 14px; padding: 16px 20px;
+  display: flex; align-items: center; gap: 14px;
+}
+.import-card .imp-icon { font-size: 28px; }
+.import-card .imp-info h4 { font-size: 13px; font-weight: 700; color: var(--gold); }
+.import-card .imp-info p  { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+/* preview card */
+.preview-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  backdrop-filter: blur(20px);
+  overflow: hidden;
+}
+.preview-card-header {
+  padding: 16px 20px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.preview-card-header h3 {
+  font-family: 'Rajdhani', sans-serif; font-size: 15px; font-weight: 700;
+  color: var(--gold); letter-spacing: 1px; text-transform: uppercase;
+  display: flex; align-items: center; gap: 8px;
+}
+.live-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--green);
+  animation: blink 1.5s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+.preview-scroll { overflow: auto; padding: 12px; background: #1a1a2e; }
+.preview-wrapper { width: 210mm; max-width: 100%; }
+.preview-container {
+  position: relative; width: 210mm; height: 297mm;
+  background: white; border: 1px solid #aaa;
+  transform-origin: top left;
+}
+@media screen and (max-width: 900px) {
+  .preview-container {
+    transform: scale(calc((100vw - 48px) / 794));
+    margin-bottom: -190mm;
+  }
+}
+.preview-container > img.bg-img { width: 100%; height: 100%; object-fit: cover; }
+.text-overlay {
+  position: absolute; font-size: 12pt; font-weight: bold;
+  color: black; white-space: nowrap;
+}
+#dobWords { font-size: 10pt !important; }
+
+/* overlay positions */
+#ageGroup          { top:1.78in; left:1.85in; }
+#participantName   { top:2.24in; left:4.21in; }
+#fatherName        { top:2.56in; left:4.2in; }
+#motherName        { top:2.9in;  left:4.2in; }
+#schoolName        { top:3.3in;  left:4.2in; }
+#address           { top:3.6in;  left:4.2in; }
+#schoolPhone       { top:3.9in;  left:4.2in; }
+#registrationNo    { top:4.2in;  left:4.2in; }
+#dob               { top:4.52in; left:4.2in; }
+#dobWords          { top:4.75in; left:4.2in; }
+#age               { top:6.05in; left:4.2in; }
+#aadhaar           { top:5.25in; left:4.2in; }
+#passport          { top:5.52in; left:4.2in; }
+#discipline        { top:5.8in;  left:4.2in; }
+#permanentAddress  { top:6.3in;  left:4.3in; }
+#mobile            { top:6.53in; left:4.5in; }
+#admissionNo       { top:6.75in; left:4.2in; }
+#joiningDate       { top:7in;    left:4.2in; }
+#standardThisYear  { top:7.3in;  left:4.2in; }
+#standardLastYear  { top:7.55in; left:4.2in; }
+#bankHolder        { top:7.8in;  left:5in; }
+#bankName          { top:8.05in; left:5in; }
+#accountNo         { top:8.25in; left:5in; }
+#ifsc              { top:8.38in; left:5in; }
+#marks             { top:8.68in; left:4.2in; }
+#photo {
+  position:absolute; top:0.77in; left:6.74in;
+  width:1.2in; height:1.35in; object-fit:cover; display:none;
+}
+
+/* preview action row */
+.preview-actions {
+  padding: 14px 16px; border-top: 1px solid var(--border);
+  display: flex; gap: 10px; flex-wrap: wrap;
+}
+
+/* ─── TOAST ─── */
+.toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
+  background: var(--green); color: white; padding: 12px 24px;
+  border-radius: 12px; font-size: 14px; font-weight: 700;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  transition: transform 0.35s cubic-bezier(.4,0,.2,1);
+  z-index: 9999; white-space: nowrap;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+.toast.error { background: #C62828; }
+
+/* ─── STATS ROW ─── */
+.stats-row {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 12px;
+}
+.stat-card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px 12px; text-align: center;
+}
+.stat-card .s-val {
+  font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700;
+}
+.stat-card .s-lbl { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+.stat-card:nth-child(1) .s-val { color: var(--saffron); }
+.stat-card:nth-child(2) .s-val { color: var(--gold); }
+.stat-card:nth-child(3) .s-val { color: var(--green); }
+
+/* ─── MOBILE BOTTOM BTN ─── */
+@media(max-width:899px) {
+  .right-panel { order: -1; }
+  .preview-card { display: none; }
+  .preview-card.show-mobile { display: block; }
+}
+</style>
+</head>
+<body>
+
+<!-- Background -->
+<div class="bg-canvas">
+  <svg class="bg-rings" width="600" height="600" viewBox="0 0 600 600">
+    <circle cx="300" cy="300" r="100"/><circle cx="300" cy="300" r="160"/>
+    <circle cx="300" cy="300" r="220"/><circle cx="300" cy="300" r="280"/>
+    <circle cx="300" cy="300" r="340"/>
+  </svg>
+</div>
+
+<!-- Header -->
+<header>
+  <div class="header-stripe"></div>
+  <div class="header-inner">
+    <div class="header-emblem">🏆</div>
+    <div class="header-text">
+      <div class="org">School Games Federation of India</div>
+      <h1>National <span>School Games</span></h1>
+      <div class="sub">Certificate of Eligibility – ZPEO KANGAN | Annexure 2 | G.P.S.563/20-30</div>
+    </div>
+    <div class="header-badge">
+      <div class="b-label">Academic Year</div>
+      <div class="b-val">2025–26</div>
+    </div>
+  </div>
+</header>
+
+<!-- Page -->
+<div class="page-wrap">
+
+  <!-- LEFT: Stepper + Form -->
+  <div>
+    <!-- Import card -->
+    <div class="import-card" style="margin-bottom:16px;">
+      <div class="imp-icon">📂</div>
+      <div class="imp-info">
+        <h4>Import Previous Certificate</h4>
+        <p>Load a previously saved PDF to auto-fill all fields</p>
+      </div>
+      <label for="uploadExistingPDF" class="btn btn-import" style="cursor:pointer;">
+        📥 Import PDF
+      </label>
+      <input type="file" id="uploadExistingPDF" accept=".pdf" style="display:none;">
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-bar-wrap">
+      <div class="progress-header">
+        <h3>📋 Form Progress</h3>
+        <span class="progress-pct" id="progressPct">Step 1 of 5</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <nav class="steps-nav">
+        <button class="step-btn active" onclick="goStep(1)" id="sbtn1">
+          <div class="step-dot">1</div>
+          <div class="step-info"><div class="s-title">👤 Personal Info</div><div class="s-sub">Name, DOB, Aadhaar</div></div>
+        </button>
+        <button class="step-btn" onclick="goStep(2)" id="sbtn2">
+          <div class="step-dot">2</div>
+          <div class="step-info"><div class="s-title">🏫 School Details</div><div class="s-sub">School, Address, Registration</div></div>
+        </button>
+        <button class="step-btn" onclick="goStep(3)" id="sbtn3">
+          <div class="step-dot">3</div>
+          <div class="step-info"><div class="s-title">🏅 Sports Info</div><div class="s-sub">Discipline, Identification</div></div>
+        </button>
+        <button class="step-btn" onclick="goStep(4)" id="sbtn4">
+          <div class="step-dot">4</div>
+          <div class="step-info"><div class="s-title">🏦 Bank Details</div><div class="s-sub">Account, IFSC Code</div></div>
+        </button>
+        <button class="step-btn" onclick="goStep(5)" id="sbtn5">
+          <div class="step-dot">5</div>
+          <div class="step-info"><div class="s-title">📸 Photo & Preview</div><div class="s-sub">Upload photo, generate</div></div>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Form panels -->
+    <div class="form-card" style="margin-top:16px;">
+
+      <!-- STEP 1: Personal -->
+      <div class="step-panel active" id="panel1">
+        <div class="panel-title"><span>👤</span> Personal Information</div>
+        <div class="panel-sub">Enter participant's personal details in block letters</div>
+        <div class="field-grid">
+          <div class="field full">
+            <label>Age Group (Years)</label>
+            <input type="text" id="inputAge" placeholder="e.g. UNDER 17">
+          </div>
+          <div class="field full">
+            <label>Name of Participant</label>
+            <input type="text" id="inputParticipant" placeholder="FULL NAME IN BLOCK LETTERS">
+          </div>
+          <div class="field">
+            <label>Father's Name</label>
+            <input type="text" id="inputFather" placeholder="FATHER'S NAME">
+          </div>
+          <div class="field">
+            <label>Mother's Name</label>
+            <input type="text" id="inputMother" placeholder="MOTHER'S NAME">
+          </div>
+          <div class="field">
+            <label>Date of Birth</label>
+            <input type="date" id="inputDob">
+          </div>
+          <div class="field">
+            <label>Aadhaar Number</label>
+            <input type="text" id="inputAadhaar" placeholder="XXXX XXXX XXXX" maxlength="14">
+          </div>
+          <div class="field full">
+            <label>Passport No. (if available)</label>
+            <input type="text" id="inputPassport" placeholder="PASSPORT NUMBER">
+          </div>
+          <div class="field full">
+            <label>Permanent Address &amp; Phone No.</label>
+            <input type="text" id="inputPermAddress" placeholder="PERMANENT ADDRESS">
+          </div>
+          <div class="field full">
+            <label>Mobile No.</label>
+            <input type="text" id="inputMobile" placeholder="+91 XXXXXXXXXX" maxlength="13">
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-next" onclick="goStep(2)">School Details →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: School -->
+      <div class="step-panel" id="panel2">
+        <div class="panel-title"><span>🏫</span> School Details</div>
+        <div class="panel-sub">Enter school information and academic records</div>
+        <div class="field-grid">
+          <div class="field full">
+            <label>Name of School</label>
+            <input type="text" id="inputSchool" placeholder="SCHOOL NAME">
+          </div>
+          <div class="field full">
+            <label>Full Address of School</label>
+            <input type="text" id="inputAddress" placeholder="SCHOOL FULL ADDRESS">
+          </div>
+          <div class="field">
+            <label>School's Phone No. with Code</label>
+            <input type="text" id="inputPhone" placeholder="01234-XXXXXX">
+          </div>
+          <div class="field">
+            <label>Last Year SGFI Registration No.</label>
+            <input type="text" id="inputRegNo" placeholder="SGFI/XX/XXXX">
+          </div>
+          <div class="field">
+            <label>Admission No. &amp; Year</label>
+            <input type="text" id="inputAdmission" placeholder="ADM NO / YEAR">
+          </div>
+          <div class="field">
+            <label>Date of Joining School</label>
+            <input type="date" id="inputJoining">
+          </div>
+          <div class="field">
+            <label>Standard &amp; Section (This Year)</label>
+            <input type="text" id="inputStdThis" placeholder="e.g. 10-A">
+          </div>
+          <div class="field">
+            <label>Standard Studying (Last Year)</label>
+            <input type="text" id="inputStdLast" placeholder="e.g. 9-A">
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-prev" onclick="goStep(1)">← Back</button>
+          <button class="btn btn-next" onclick="goStep(3)">Sports Info →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Sports -->
+      <div class="step-panel" id="panel3">
+        <div class="panel-title"><span>🏅</span> Sports Information</div>
+        <div class="panel-sub">Enter discipline and identification details</div>
+        <div class="field-grid">
+          <div class="field full">
+            <label>Discipline / Game</label>
+            <input type="text" id="inputDiscipline" placeholder="e.g. ATHLETICS, FOOTBALL, CRICKET">
+          </div>
+          <div class="field full">
+            <label>Age Completed (as on 31st December)</label>
+            <input type="text" id="inputAgeCalc" placeholder="Auto-calculated from DOB" readonly
+              style="opacity:0.7;cursor:not-allowed;">
+          </div>
+          <div class="field full">
+            <label>Personal Identification Marks</label>
+            <input type="text" id="inputMarks" placeholder="e.g. MOLE ON RIGHT CHEEK">
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div style="background:rgba(255,107,0,0.08);border:1px solid rgba(255,107,0,0.2);border-radius:12px;padding:14px 16px;">
+          <p style="font-size:12px;color:var(--muted);">
+            ⚠️ <strong style="color:var(--gold);">Note:</strong> Age is auto-calculated from your Date of Birth (entered in Step 1) as on 31st December of the current academic year.
+          </p>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-prev" onclick="goStep(2)">← Back</button>
+          <button class="btn btn-next" onclick="goStep(4)">Bank Details →</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: Bank -->
+      <div class="step-panel" id="panel4">
+        <div class="panel-title"><span>🏦</span> Bank Details</div>
+        <div class="panel-sub">Enter participant's or parent's bank account details</div>
+        <div class="field-grid">
+          <div class="field full">
+            <label>Account Holder Name</label>
+            <input type="text" id="inputHolder" placeholder="IF NO ACCOUNT, ENTER MOTHER'S/FATHER'S NAME">
+          </div>
+          <div class="field">
+            <label>Name of the Bank</label>
+            <input type="text" id="inputBankName" placeholder="BANK NAME">
+          </div>
+          <div class="field">
+            <label>Account No.</label>
+            <input type="text" id="inputAccount" placeholder="ACCOUNT NUMBER">
+          </div>
+          <div class="field full">
+            <label>IFSC Code</label>
+            <input type="text" id="inputIfsc" placeholder="IFSC CODE" maxlength="11">
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div style="background:rgba(19,136,8,0.08);border:1px solid rgba(19,136,8,0.25);border-radius:12px;padding:14px 16px;">
+          <p style="font-size:12px;color:var(--muted);">
+            🔒 <strong style="color:var(--green);">Secure:</strong> Bank details are embedded only in your downloaded PDF and are not transmitted or stored online.
+          </p>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-prev" onclick="goStep(3)">← Back</button>
+          <button class="btn btn-next" onclick="goStep(5)">Photo &amp; Preview →</button>
+        </div>
+      </div>
+
+      <!-- STEP 5: Photo -->
+      <div class="step-panel" id="panel5">
+        <div class="panel-title"><span>📸</span> Photo &amp; Generate</div>
+        <div class="panel-sub">Upload participant photo and generate the certificate</div>
+
+        <label class="photo-upload-area" for="inputPhoto" id="photoDropArea">
+          <div class="icon">🖼️</div>
+          <p><strong>Click to upload</strong> or drag &amp; drop</p>
+          <p>JPG, PNG – Passport size photo recommended</p>
+          <img id="photoPreviewThumb" alt="Photo preview">
+        </label>
+        <input type="file" id="inputPhoto" accept="image/*,.jpg,.jpeg,.png">
+
+        <div class="divider"></div>
+        <div class="stats-row" style="margin-bottom:8px;" id="summaryStats">
+          <div class="stat-card">
+            <div class="s-val" id="statName">–</div>
+            <div class="s-lbl">Participant</div>
+          </div>
+          <div class="stat-card">
+            <div class="s-val" id="statAge">–</div>
+            <div class="s-lbl">Age Group</div>
+          </div>
+          <div class="stat-card">
+            <div class="s-val" id="statGame">–</div>
+            <div class="s-lbl">Discipline</div>
+          </div>
+        </div>
+
+        <div class="btn-row" style="flex-wrap:wrap;">
+          <button class="btn btn-prev" onclick="goStep(4)">← Back</button>
+          <button class="btn btn-generate" onclick="showPreview()">🔄 Generate Preview</button>
+          <button class="btn btn-pdf" onclick="downloadPDF()">📄 Download PDF</button>
+        </div>
+      </div>
+
+    </div><!-- /form-card -->
+  </div><!-- /left -->
+
+  <!-- RIGHT: Preview -->
+  <div class="right-panel">
+    <div class="preview-card" id="previewCard">
+      <div class="preview-card-header">
+        <h3><div class="live-dot"></div> Live Preview</h3>
+        <span style="font-size:11px;color:var(--muted);">Updates as you type</span>
+      </div>
+      <div class="preview-scroll">
+        <div class="preview-wrapper">
+          <div class="preview-container" id="LoadDetails">
+            <img class="bg-img" src="wwwww.jpg" alt="Certificate background">
+            <img id="photo" alt="Participant photo">
+            <div id="ageGroup"         class="text-overlay"></div>
+            <div id="participantName"  class="text-overlay"></div>
+            <div id="fatherName"       class="text-overlay"></div>
+            <div id="motherName"       class="text-overlay"></div>
+            <div id="schoolName"       class="text-overlay"></div>
+            <div id="address"          class="text-overlay"></div>
+            <div id="schoolPhone"      class="text-overlay"></div>
+            <div id="registrationNo"   class="text-overlay"></div>
+            <div id="dob"              class="text-overlay"></div>
+            <div id="dobWords"         class="text-overlay"></div>
+            <div id="age"              class="text-overlay"></div>
+            <div id="aadhaar"          class="text-overlay"></div>
+            <div id="passport"         class="text-overlay"></div>
+            <div id="discipline"       class="text-overlay"></div>
+            <div id="permanentAddress" class="text-overlay"></div>
+            <div id="mobile"           class="text-overlay"></div>
+            <div id="admissionNo"      class="text-overlay"></div>
+            <div id="joiningDate"      class="text-overlay"></div>
+            <div id="standardThisYear" class="text-overlay"></div>
+            <div id="standardLastYear" class="text-overlay"></div>
+            <div id="bankHolder"       class="text-overlay"></div>
+            <div id="bankName"         class="text-overlay"></div>
+            <div id="accountNo"        class="text-overlay"></div>
+            <div id="ifsc"             class="text-overlay"></div>
+            <div id="marks"            class="text-overlay"></div>
+          </div>
+        </div>
+      </div>
+      <div class="preview-actions">
+        <button class="btn btn-generate" style="flex:1;" onclick="showPreview()">🔄 Refresh Preview</button>
+        <button class="btn btn-pdf" style="flex:1;" onclick="downloadPDF()">📄 Download PDF</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page-wrap -->
+
+<!-- Toast -->
+<div class="toast" id="toast">✅ Done!</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+
+/* ─── STEPPER ─── */
+let currentStep = 1;
+const TOTAL_STEPS = 5;
+
+function goStep(n) {
+  document.getElementById('panel' + currentStep).classList.remove('active');
+  document.getElementById('sbtn' + currentStep).classList.remove('active');
+  // mark previous as done
+  if(n > currentStep) document.getElementById('sbtn' + currentStep).classList.add('done');
+
+  currentStep = n;
+  document.getElementById('panel' + n).classList.add('active');
+  document.querySelectorAll('.step-btn').forEach((b,i) => {
+    if(i+1 < n) b.classList.add('done');
+    if(i+1 === n){ b.classList.add('active'); b.classList.remove('done'); }
+    if(i+1 > n) { b.classList.remove('done'); b.classList.remove('active'); }
+  });
+  const pct = Math.round((n / TOTAL_STEPS) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressPct').textContent = 'Step ' + n + ' of ' + TOTAL_STEPS;
+
+  // update summary on step 5
+  if(n === 5) updateSummary();
+
+  // scroll top on mobile
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function updateSummary() {
+  const name = document.getElementById('inputParticipant').value || '–';
+  const age  = document.getElementById('inputAge').value || '–';
+  const game = document.getElementById('inputDiscipline').value || '–';
+  document.getElementById('statName').textContent = name.split(' ')[0] || '–';
+  document.getElementById('statAge').textContent  = age;
+  document.getElementById('statGame').textContent = game.split(' ')[0] || '–';
+}
+
+/* ─── DOB WORDS ─── */
+function formatDOBWords(d) {
+  if(!d) return '';
+  const date = new Date(d);
+  const day = date.getDate();
+  const months = ['JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST','SEPTEMBER','OCTOBER','NOVEMBER','DECEMBER'];
+  const month = months[date.getMonth()];
+  const dayWords = ['','FIRST','SECOND','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH','EIGHTH','NINTH','TENTH',
+    'ELEVENTH','TWELFTH','THIRTEENTH','FOURTEENTH','FIFTEENTH','SIXTEENTH','SEVENTEENTH',
+    'EIGHTEENTH','NINETEENTH','TWENTIETH','TWENTY FIRST','TWENTY SECOND','TWENTY THIRD',
+    'TWENTY FOURTH','TWENTY FIFTH','TWENTY SIXTH','TWENTY SEVENTH','TWENTY EIGHTH',
+    'TWENTY NINTH','THIRTIETH','THIRTY FIRST'];
+  function n2w(num) {
+    const ones=['','ONE','TWO','THREE','FOUR','FIVE','SIX','SEVEN','EIGHT','NINE','TEN',
+      'ELEVEN','TWELVE','THIRTEEN','FOURTEEN','FIFTEEN','SIXTEEN','SEVENTEEN','EIGHTEEN','NINETEEN'];
+    const tens=['','','TWENTY','THIRTY','FORTY','FIFTY','SIXTY','SEVENTY','EIGHTY','NINETY'];
+    if(num<20) return ones[num];
+    if(num<100) return tens[Math.floor(num/10)]+(num%10?' '+ones[num%10]:'');
+    if(num<1000) return ones[Math.floor(num/100)]+' HUNDRED '+n2w(num%100);
+    if(num<10000) return ones[Math.floor(num/1000)]+' THOUSAND '+n2w(num%1000);
+    return num;
+  }
+  return `${dayWords[day]} ${month} ${n2w(date.getFullYear())}`;
+}
+
+function formatNormalDate(d) {
+  if(!d) return '';
+  const date = new Date(d);
+  const dd = String(date.getDate()).padStart(2,'0');
+  const mm = String(date.getMonth()+1).padStart(2,'0');
+  return `${dd}.${mm}.${date.getFullYear()}`;
+}
+
+function calculateAge(dob) {
+  if(!dob) return '';
+  const birth = new Date(dob);
+  const ref   = new Date('2026-12-31');
+  let y = ref.getFullYear() - birth.getFullYear();
+  let m = ref.getMonth()    - birth.getMonth();
+  let day2 = ref.getDate()  - birth.getDate();
+  if(day2<0){ m--; day2+=30; }
+  if(m<0)   { y--;  m+=12; }
+  return `${y} YEARS ${m} MONTHS ${day2} DAYS`;
+}
+
+/* ─── SHOW PREVIEW ─── */
+function showPreview() {
+  const get = id => document.getElementById(id).value;
+  const set = (id,val) => document.getElementById(id).textContent = val||'';
+
+  set('ageGroup',        get('inputAge'));
+  set('participantName', get('inputParticipant'));
+  set('fatherName',      get('inputFather'));
+  set('motherName',      get('inputMother'));
+  set('schoolName',      get('inputSchool'));
+  set('address',         get('inputAddress'));
+  set('schoolPhone',     get('inputPhone'));
+  set('registrationNo',  get('inputRegNo'));
+
+  const dob = get('inputDob');
+  set('dob',      formatNormalDate(dob));
+  set('dobWords', formatDOBWords(dob));
+  const ageStr = calculateAge(dob);
+  set('age', ageStr);
+  document.getElementById('inputAgeCalc').value = ageStr;
+
+  set('aadhaar',         get('inputAadhaar'));
+  set('passport',        get('inputPassport'));
+  set('discipline',      get('inputDiscipline'));
+  set('permanentAddress',get('inputPermAddress'));
+  set('mobile',          get('inputMobile'));
+  set('admissionNo',     get('inputAdmission'));
+  set('joiningDate',     formatNormalDate(get('inputJoining')));
+  set('standardThisYear',get('inputStdThis'));
+  set('standardLastYear',get('inputStdLast'));
+  set('bankHolder',      get('inputHolder'));
+  set('bankName',        get('inputBankName'));
+  set('accountNo',       get('inputAccount'));
+  set('ifsc',            get('inputIfsc'));
+  set('marks',           get('inputMarks'));
+
+  const photoInput = document.getElementById('inputPhoto');
+  const photo = document.getElementById('photo');
+  if(photoInput.files && photoInput.files[0]) {
+    const r = new FileReader();
+    r.onload = e => { photo.src = e.target.result; photo.style.display='block'; };
+    r.readAsDataURL(photoInput.files[0]);
+  }
+
+  // show preview on mobile
+  document.getElementById('previewCard').classList.add('show-mobile');
+  showToast('✅ Preview updated!', false);
+}
+
+/* ─── DOWNLOAD PDF ─── */
+async function downloadPDF() {
+  showToast('⏳ Generating PDF…', false);
+  showPreview();
+  await new Promise(r => setTimeout(r, 800));
+
+  const preview = document.getElementById('LoadDetails');
+  const canvas  = await html2canvas(preview, { scale:4, useCORS:true });
+  const imgData = canvas.toDataURL('image/jpeg', 1.0);
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF('p','mm','a4');
+  pdf.addImage(imgData,'JPEG',0,0,210,297);
+
+  // embed JSON for re-import
+  const formData = {
+    ageGroup:    document.getElementById('inputAge').value,
+    participant: document.getElementById('inputParticipant').value,
+    father:      document.getElementById('inputFather').value,
+    mother:      document.getElementById('inputMother').value,
+    school:      document.getElementById('inputSchool').value,
+    address:     document.getElementById('inputAddress').value,
+    phone:       document.getElementById('inputPhone').value,
+    regNo:       document.getElementById('inputRegNo').value,
+    dob:         document.getElementById('inputDob').value,
+    aadhaar:     document.getElementById('inputAadhaar').value,
+    passport:    document.getElementById('inputPassport').value,
+    discipline:  document.getElementById('inputDiscipline').value,
+    permAddress: document.getElementById('inputPermAddress').value,
+    mobile:      document.getElementById('inputMobile').value,
+    admission:   document.getElementById('inputAdmission').value,
+    joining:     document.getElementById('inputJoining').value,
+    stdThis:     document.getElementById('inputStdThis').value,
+    stdLast:     document.getElementById('inputStdLast').value,
+    bankName:    document.getElementById('inputBankName').value,
+    holder:      document.getElementById('inputHolder').value,
+    account:     document.getElementById('inputAccount').value,
+    ifsc:        document.getElementById('inputIfsc').value,
+    marks:       document.getElementById('inputMarks').value,
+    photo:       document.getElementById('photo').src || ''
+  };
+  pdf.text('JSON_DATA:' + JSON.stringify(formData), -1000, -1000);
+
+  const name = (document.getElementById('inputParticipant').value.trim() || 'certificate_form');
+  pdf.save(`${name.replace(/\s+/g,'_')}_eligibility.pdf`);
+  showToast('✅ PDF downloaded!', false);
+}
+
+/* ─── IMPORT PDF ─── */
+document.getElementById('uploadExistingPDF').addEventListener('change', async function(e) {
+  const file = e.target.files[0];
+  if(!file) return;
+  try {
+    const reader = new FileReader();
+    reader.onload = async function() {
+      try {
+        const arr = new Uint8Array(reader.result);
+        let txt = '';
+        for(let i=0;i<arr.length;i++) txt += String.fromCharCode(arr[i]);
+        const match = txt.match(/JSON_DATA:(\{.*?\})/s);
+        if(!match) { showToast('❌ No import data found in this PDF', true); return; }
+        const data = JSON.parse(match[1]);
+        const fill = (id, val) => { if(document.getElementById(id)) document.getElementById(id).value = val||''; };
+        fill('inputAge',        data.ageGroup);
+        fill('inputParticipant',data.participant);
+        fill('inputFather',     data.father);
+        fill('inputMother',     data.mother);
+        fill('inputSchool',     data.school);
+        fill('inputAddress',    data.address);
+        fill('inputPhone',      data.phone);
+        fill('inputRegNo',      data.regNo);
+        fill('inputDob',        data.dob);
+        fill('inputAadhaar',    data.aadhaar);
+        fill('inputPassport',   data.passport);
+        fill('inputDiscipline', data.discipline);
+        fill('inputPermAddress',data.permAddress);
+        fill('inputMobile',     data.mobile);
+        fill('inputAdmission',  data.admission);
+        fill('inputJoining',    data.joining);
+        fill('inputStdThis',    data.stdThis);
+        fill('inputStdLast',    data.stdLast);
+        fill('inputBankName',   data.bankName);
+        fill('inputHolder',     data.holder);
+        fill('inputAccount',    data.account);
+        fill('inputIfsc',       data.ifsc);
+        fill('inputMarks',      data.marks);
+        if(data.photo) {
+          document.getElementById('photo').src = data.photo;
+          document.getElementById('photo').style.display = 'block';
+          document.getElementById('photoPreviewThumb').src = data.photo;
+          document.getElementById('photoPreviewThumb').style.display = 'block';
+        }
+        showPreview();
+        showToast('✅ Previous certificate imported!', false);
+      } catch(err) { showToast('❌ Import failed – invalid data', true); }
+    };
+    reader.readAsArrayBuffer(file);
+  } catch(err) { showToast('❌ Could not read PDF', true); }
+});
+
+/* ─── PHOTO PREVIEW ─── */
+document.getElementById('inputPhoto').addEventListener('change', function() {
+  if(this.files && this.files[0]) {
+    const r = new FileReader();
+    r.onload = e => {
+      const thumb = document.getElementById('photoPreviewThumb');
+      thumb.src = e.target.result; thumb.style.display = 'block';
+    };
+    r.readAsDataURL(this.files[0]);
+    showPreview();
+  }
+});
+
+/* ─── LIVE PREVIEW ─── */
+let previewTimer;
+document.querySelectorAll('input').forEach(inp => {
+  inp.addEventListener('input',  () => { clearTimeout(previewTimer); previewTimer = setTimeout(showPreview, 300); });
+  inp.addEventListener('change', () => showPreview());
+});
+
+/* ─── AUTO UPPERCASE ─── */
+document.querySelectorAll("input[type='text']").forEach(inp => {
+  inp.addEventListener('input', function() { this.value = this.value.toUpperCase(); });
+});
+
+/* ─── ENTER TO NEXT FIELD ─── */
+const allInputs = Array.from(document.querySelectorAll('input:not([readonly])'));
+allInputs.forEach((inp, i) => {
+  inp.addEventListener('keydown', function(e) {
+    if(e.key === 'Enter') { e.preventDefault(); if(allInputs[i+1]) allInputs[i+1].focus(); }
+  });
+});
+
+/* ─── AADHAAR FORMAT ─── */
+document.getElementById('inputAadhaar').addEventListener('input', function() {
+  let v = this.value.replace(/\D/g,'').substring(0,12);
+  this.value = v.replace(/(\d{4})(?=\d)/g,'$1 ').trim();
+});
+
+/* ─── TOAST ─── */
+function showToast(msg, isErr) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast' + (isErr?' error':'');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+/* ─── INIT ─── */
+goStep(1);
+
+</script>
+</body>
+</html>
