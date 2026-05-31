@@ -339,10 +339,18 @@ body{font-family:'Outfit',sans-serif;background:var(--left-bg);color:var(--txt);
 /* ══ MOBILE ══ */
 @media(max-width:800px){
   html,body{height:auto;overflow:auto}
-  .split{flex-direction:column}
+  .split{flex-direction:column;overflow:visible}
   .form-panel{width:100%;border-right:none;border-bottom:1px solid var(--border)}
-  .preview-panel{min-height:500px}
-  .cert-stage{padding:12px}
+  .preview-panel{display:flex;flex-direction:column}
+  .cert-stage{
+    height:600px;
+    min-height:600px;
+    flex:none;
+    padding:8px;
+    overflow-y:auto;
+    overflow-x:hidden;
+    align-items:flex-start;
+  }
 }
 </style>
 </head>
@@ -618,27 +626,42 @@ body{font-family:'Outfit',sans-serif;background:var(--left-bg);color:var(--txt);
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
 /* ── SCALE CERTIFICATE ── */
+const CERT_W = 794;   // 210mm @ 96dpi
+const CERT_H = 1123;  // 297mm @ 96dpi
+
 function scalePreview(){
-  const stage   = document.getElementById('certStage');
-  const scaler  = document.getElementById('certScaler');
-  const CERT_W  = 794;   // 210mm @ 96dpi
-  const CERT_H  = 1123;  // 297mm @ 96dpi
-  const pad     = 16;
-  const availW  = stage.clientWidth  - pad;
-  const availH  = stage.clientHeight - pad;
-  // Scale to fill width — zoomed in, scroll vertically to see full cert
-  const scale   = availW / CERT_W;
-  scaler.style.transform = `scale(${scale})`;
+  const stage  = document.getElementById('certStage');
+  const scaler = document.getElementById('certScaler');
+  if(!stage || !scaler) return;
+
+  // Use offsetWidth as fallback when clientWidth returns 0 (mobile stacked layout)
+  const stageW = stage.clientWidth || stage.offsetWidth || window.innerWidth;
+  if(stageW === 0){ setTimeout(scalePreview, 80); return; }
+
+  const pad    = 16;
+  const availW = stageW - pad;
+
+  // Fill width, scroll vertically
+  const scale  = availW / CERT_W;
+  scaler.style.transform       = `scale(${scale})`;
   scaler.style.transformOrigin = 'top center';
-  // Adjust container height so scrolling works correctly
+
+  // Push the container floor down so the stage scrolls the full scaled height
   const scaledH = CERT_H * scale;
-  const marginB = scaledH - CERT_H;
-  scaler.style.marginBottom = marginB + 'px';
+  const extra   = scaledH - CERT_H; // negative when scale < 1
+  scaler.style.marginBottom = extra + 'px';
 }
 
+// Robust: ResizeObserver fires whenever the stage changes size (orientation, panel toggle)
+if(window.ResizeObserver){
+  new ResizeObserver(scalePreview).observe(document.getElementById('certStage'));
+}
 window.addEventListener('resize', scalePreview);
 window.addEventListener('load',   scalePreview);
-setTimeout(scalePreview, 100);
+// Extra safety for mobile: fire after paint
+setTimeout(scalePreview, 50);
+setTimeout(scalePreview, 300);
+setTimeout(scalePreview, 800);
 
 /* ── STEPPER ── */
 let cur = 1;
